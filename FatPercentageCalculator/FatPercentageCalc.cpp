@@ -27,6 +27,9 @@ Assigment:	Create an application that allows the user to enter the number of cal
 			150 calories 2 fat grams Percentage of calories from fat: 12%
 			(a low-fat food)
 			500 calories, 30 fat grams Percentage of calories from fat: 54%
+
+										****NOTICE****
+			Program made with what has been seen in class. No advanced programming.
 */
 
 #include <iostream>
@@ -35,5 +38,69 @@ using namespace std;
 
 int main()
 {
+	// Variables used in the program.
+	double fatGrams;
+	double totalCalories;
+	double caloriesFromFat;
+	double percentageCalFromFat;
 
+	cout << "Fat Percentage Calculator" << endl;
+	cout << "Please enter the total of calories: ";
+	cin >> totalCalories;
+
+	if (totalCalories > 0)
+	{
+		cout << "Enter the amount of fat grams(Cant be greater than the total calories):";
+		cin >> fatGrams;
+		caloriesFromFat = fatGrams * 9;
+
+		if (fatGrams < 0)
+		{
+			// cout << "\033[2J\033[1;1H"; <---- Command used to clear the console for the user. 
+			// System("CLS") not used because is a system command and it could cause problem when running program on Linux.
+			cout << "\033[2J\033[1;1H"; 
+			cout << "Fat grams can't be a negative number. Try again" << endl;
+			cout << "Fat grams: " << fatGrams << endl;
+		}
+		else
+		{
+			if (caloriesFromFat < totalCalories)
+			{
+				percentageCalFromFat = (caloriesFromFat / totalCalories) * 100;
+
+				if (percentageCalFromFat < 30)
+				{
+					cout << "\033[2J\033[1;1H";
+					cout << "*****Your food information*****" << endl;
+					cout << "Total calories: " << totalCalories << endl;
+					cout << "Calories from Fat: " << caloriesFromFat << endl;
+					cout << "Percentage of Fat:" << percentageCalFromFat << "%" << endl;
+					cout << "This meal is low on fat (Below 30%)." << endl;
+				}
+				else
+				{
+					cout << "\033[2J\033[1;1H";
+					cout << "*****Your food information*****" << endl;
+					cout << "Total calories: " << totalCalories << endl;
+					cout << "Calories from Fat: " << caloriesFromFat << endl;
+					cout << "Percentage of Fat:" << percentageCalFromFat << "%" << endl;
+				}
+			}
+			else
+			{
+				cout << "\033[2J\033[1;1H";
+				cout << "The amount of calories from fat is greater than the total calories" << endl;
+				cout << "Total calories: " << totalCalories << endl;
+				cout << "Calories from Fat: " << caloriesFromFat << endl;
+			}
+		}
+	}
+	else
+	{
+		cout << "\033[2J\033[1;1H";
+		cout << "Total calories are below zero and amount has been set to 1. Try again.";
+		totalCalories = 1;
+	}
+
+	return 0;
 }
